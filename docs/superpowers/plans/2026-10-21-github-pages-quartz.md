@@ -70,11 +70,12 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 
 - [ ] **Step 1: 写同步脚本**
 
-创建 `site/sync-content.sh`，内容一字不差：
+创建 `site/sync-content.sh`，内容一字不差（实现记录：本机无 rsync，改用 tar 管道，行为等价）：
 
 ```bash
 #!/usr/bin/env bash
 # 把 vault 根目录的笔记同步到 site/content/，CI 与本地预览共用。
+# 用 tar 管道复制（不依赖 rsync），排除工具/框架目录。
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -83,17 +84,17 @@ CONTENT_DIR="$REPO_ROOT/site/content"
 rm -rf "$CONTENT_DIR"
 mkdir -p "$CONTENT_DIR"
 
-rsync -a \
-  --exclude='.git/' \
-  --exclude='.obsidian/' \
-  --exclude='.claude/' \
-  --exclude='.github/' \
-  --exclude='.gitignore' \
-  --exclude='site/' \
-  --exclude='docs/' \
-  --exclude='node_modules/' \
-  --exclude='Outlines/' \
-  "$REPO_ROOT/" "$CONTENT_DIR/"
+tar -cf - \
+  --exclude='./.git' \
+  --exclude='./.obsidian' \
+  --exclude='./.claude' \
+  --exclude='./.github' \
+  --exclude='./.gitignore' \
+  --exclude='./site' \
+  --exclude='./docs' \
+  --exclude='./Outlines' \
+  --exclude='node_modules' \
+  -C "$REPO_ROOT" . | tar -xf - -C "$CONTENT_DIR"
 
 # README 是现成的入口页，复制为 Quartz 首页
 cp "$REPO_ROOT/README.md" "$CONTENT_DIR/index.md"

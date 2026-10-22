@@ -1,2 +1,5 @@
 Outlines/
 .obsidian/
+site/content/
+site/public/
+site/node_modules/
