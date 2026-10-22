@@ -21,7 +21,10 @@ tar -cf - \
   --exclude='node_modules' \
   -C "$REPO_ROOT" . | tar -xf - -C "$CONTENT_DIR"
 
-# README 是现成的入口页，复制为 Quartz 首页
-cp "$REPO_ROOT/README.md" "$CONTENT_DIR/index.md"
+# README 是现成的入口页，复制为 Quartz 首页（加 frontmatter 以设置浏览器标题）
+{
+  printf -- '---\ntitle: FPNU 编程集训队笔记归档\n---\n\n'
+  cat "$REPO_ROOT/README.md"
+} > "$CONTENT_DIR/index.md"
 
 echo "synced: $(find "$CONTENT_DIR" -name '*.md' | wc -l) md files -> $CONTENT_DIR"

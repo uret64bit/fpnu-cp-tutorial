@@ -18,7 +18,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
         header: "Schibsted Grotesk",
@@ -87,7 +87,9 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // 已停用：该插件构建时强制从 Google Fonts 拉取字体，当前网络不可达；
+      // 且 OG 卡片对国内 IM 分享基本无效。网络允许时可取消注释恢复。
+      // Plugin.CustomOgImages(),
     ],
   },
 }
