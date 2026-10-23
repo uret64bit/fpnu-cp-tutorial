@@ -17,6 +17,7 @@ tar -cf - \
   --exclude='./.gitignore' \
   --exclude='./site' \
   --exclude='./docs' \
+  --exclude='./讲课稿' \
   --exclude='./Outlines' \
   --exclude='node_modules' \
   -C "$REPO_ROOT" . | tar -xf - -C "$CONTENT_DIR"
