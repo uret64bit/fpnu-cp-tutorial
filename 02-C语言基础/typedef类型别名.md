@@ -28,7 +28,7 @@ ll a = 1000000000000000000;  // 等价于 long long a;
 
 ```cpp
 typedef long long ll;
-typedef pair<int, int> pii;   // 第 7 讲配合 STL 使用
+typedef pair<int, int> pii;   // Day 6 配合 STL 使用，见 [[pair]]、[[vector]]
 typedef vector<int> vi;
 ```
 
