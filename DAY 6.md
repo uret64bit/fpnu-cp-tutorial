@@ -7,65 +7,67 @@ aliases:
   - 第六天
 ---
 
-# Day 6：STL 入门（竞赛必备）
+# Day 6：复杂度、模拟与枚举
 
 > [!info] 本页说明
-> 本页是**课程索引**，按上课顺序把笔记串起来。对应 [[教学大纲]] 第 7 讲的 STL 部分；只讲竞赛必备的容器和函数，deque、list、迭代器细节都不涉及。
+> 本页是**课程索引**，对应新 [[教学大纲]] 第 6 讲。从今天起进入**算法阶段**：先学会估复杂度，再学两把“万能的锤子”——模拟和枚举。
 
 ## 学习目标
 
-- 会用 `vector` 代替数组：动态添加、遍历、排序。
-- 会用 `pair` 存一对数据并直接排序；知道它和结构体的取舍。
-- 会用 `stack` / `queue` 的基本操作，知道各自适合什么题。
-- 会用 `map` / `set` 计数、去重、查找。
-- 会用 `reverse` / `unique` / `lower_bound` 等常用小函数。
+- 会用数据范围倒推复杂度，判断算法会不会超时。
+- 知道冒泡/选择/插入三种手写排序的原理与复杂度（正式解题用 `sort`）。
+- 会把题意直译成模拟代码，不丢细节。
+- 会枚举所有可能，并有“先拿部分分”的意识。
 
-## 路线一：两个常用容器
+## 路线一：复杂度与手写排序
 
-- [ ] [[vector]]：动态数组，`push_back` 与 `sort`
-- [ ] [[pair]]：两个值捆一起，自带排序规则
-- [ ] 复习 [[排序]]：`sort` 与自定义 `cmp`
+- [ ] [[时间复杂度入门]]：大 O、数据范围倒推（主线笔记）
+- [ ] [[手写排序]]：冒泡/选择/插入、稳定性
+- [ ] 复习 [[排序]]：竞赛里为什么用 `sort`
 
-## 路线二：栈、队列与映射
+## 路线二：模拟
 
-- [ ] [[栈与队列]]：后进先出与先进先出（含 `priority_queue` 拓展）
-- [ ] [[map与set]]：计数、去重、查找
+- [ ] [[模拟]]：把题意直译成代码
 
-## 路线三：常用函数
+## 路线三：枚举
 
-- [ ] [[STL常用函数]]：`reverse`、`unique`、`lower_bound`
+- [ ] [[枚举]]：暴力枚举、剪枝初步、部分分意识
+
+## 拓展（选读）
+
+- [ ] 复习 [[评测结果]]：部分分是按测试点给的
 
 ## 课后作业
 
 ### 必做
 
-1. [P3156 询问学号](https://www.luogu.com.cn/problem/P3156)：`vector` 基本操作。
-2. [P3613 寄包柜](https://www.luogu.com.cn/problem/P3613)：`vector` 动态追加。
-3. [P1739 表达式括号匹配](https://www.luogu.com.cn/problem/P1739)：栈的入门题。
-4. [P1996 约瑟夫问题](https://www.luogu.com.cn/problem/P1996)：队列模拟。
+1. [P1067 多项式输出](https://www.luogu.com.cn/problem/P1067)：模拟 + 格式细节。
+2. [P1328 生活大爆炸版石头剪刀布](https://www.luogu.com.cn/problem/P1328)：规则模拟。
+3. [P1008 三连击](https://www.luogu.com.cn/problem/P1008)：枚举 + 检查。
+4. [P1036 选数](https://www.luogu.com.cn/problem/P1036)：枚举所有选法（$n \le 20$）。
 
 ### 选做
 
-- [P1449 后缀表达式](https://www.luogu.com.cn/problem/P1449)：栈的典型应用。
-- [P1540 机器翻译](https://www.luogu.com.cn/problem/P1540)：队列模拟缓存。
-- [P1059 明明的随机数](https://www.luogu.com.cn/problem/P1059)：`sort` + `unique` 去重。
+- [P1618 三连击（升级版）](https://www.luogu.com.cn/problem/P1618)：枚举 + 剪枝。
+- [P1177 快速排序](https://www.luogu.com.cn/problem/P1177)：**用冒泡再交一次**，亲手感受 TLE。
 
 ### 挑战
 
-- [P1241 括号序列](https://www.luogu.com.cn/problem/P1241)：栈的进阶。
-- [P1160 队列安排](https://www.luogu.com.cn/problem/P1160)：复杂模拟。
+- [P1217 回文质数](https://www.luogu.com.cn/problem/P1217)：枚举 + 剪枝经典。
+- [P1014 Cantor 表](https://www.luogu.com.cn/problem/P1014)：模拟/找规律。
 
 ## 学完自检
 
-- [ ] 会用 `vector` 的 `push_back` / `size` / 遍历 / `sort`。
-- [ ] 会用 `pair` 的 `first` / `second`，知道它能直接排序。
-- [ ] 会 `stack` 的 `push`/`pop`/`top`、`queue` 的 `push`/`pop`/`front`，能说出后进先出和先进先出的区别。
-- [ ] 知道 `pop()` 不返回元素，要先 `top()` / `front()`。
-- [ ] 会用 `map` 计数（`mp[s]++`）、`set` 去重。
-- [ ] 会用 `sort` + `unique` 去重、`lower_bound` 找下标。
+- [ ] 看到 $n \le 10^5$ 能排除 $O(n^2)$，说出大概能接受什么复杂度。
+- [ ] 能估算循环次数，判断 1 秒够不够。
+- [ ] 能写出冒泡排序，说出它是 $O(n^2)$、哪里能提前退出。
+- [ ] 能判断一道题是模拟还是枚举，并举出对应套路。
+- [ ] 不会正解时，知道先写暴力拿部分分。
 
 ## 相关索引
 
+- [[算法索引]]
 - [[语言基础索引]]
 - [[DAY 5]]
+- [[DAY 7]]
 - [[教学大纲]]
